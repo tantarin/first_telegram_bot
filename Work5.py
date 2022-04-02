@@ -12,7 +12,16 @@ def start_and_help(message):
     keyboard.add(button2)
     bot.send_message(message.chat.id, "Нажми на кнопку", reply_markup=keyboard)
 
-
+@bot.message_handler(commands=['help'])
+def help_command(message):
+    keyboard = types.InlineKeyboardMarkup()
+    keyboard.add(types.InlineKeyboardButton(
+            'Message the developer', url='telegram.me/'))
+    bot.send_message(
+        message.chat.id,
+        'Если есть предложения по изменению бота, свяжитесь с разработчиком.',
+        reply_markup=keyboard
+    )
 
 @bot.callback_query_handler(func=lambda call:True)
 def callback(call):
